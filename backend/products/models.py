@@ -12,4 +12,20 @@ class Product(models.Model):
     
     def get_discount(self):
         return "122"
-        
+  
+class TypeOfProduct(models.Model):
+    title = models.CharField(max_length=120)
+    description = models.TextField(blank=True, null=True)
+    created_date = models.DateField(auto_now_add=True)
+    
+class Musician(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    instrument = models.CharField(max_length=100)
+
+
+class Album(models.Model):
+    artist = models.ForeignKey(Musician, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    release_date = models.DateField()
+    num_stars = models.IntegerField()
